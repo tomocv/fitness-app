@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<body>
+    <head th:fragment="head">
+        <meta charset="UTF-8">
+        <title>Fitness application</title>
+        <link rel="shortcut icon" type="image/x-icon" th:href="@{/images/workout-logo.png}" />
+        <link th:href="@{/css/style.css}" rel="stylesheet">
+        <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    </head>
+
+    <div th:fragment="header" id="logo-title" >
+        <img th:src="@{/images/workout-logo.png}" />
+        <h1>Fitness App</h1>
+    </div>
+
+    <div th:fragment="js" >
+        <script type="text/javascript" th:src="@{/js/bootstrap.bundle.min.js}"></script>
+    </div>
+</body>
+</html>

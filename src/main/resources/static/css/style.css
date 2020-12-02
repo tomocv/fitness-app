@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+.navbar .login-link {
+    position: absolute;
+    top: 0px;
+    right: 15px;
+    font-size: larger;
+    font-weight: bold;
+}
+
+#logo-title img{
+    width: 100px;
+    height: 100px;
+}
+
+#logo-title h1{
+    display: inline;
+}
+
+@media (max-width: 767px) {
+    .navbar .login-link {
+        right: 75px;
+        font-size: larger;
+        font-weight: bold;
+    }
+}
+
+.validation-error, .error {
+    color: red;
+}
+
+.login-error {
+    margin: 5%;
+    color: red;
+}
+
+.login-success {
+    margin: 5%;
+    color: green;
+}
