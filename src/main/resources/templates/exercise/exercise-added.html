@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" >
 <head th:replace="fragments :: head"></head>
 <body>
-    <div th:replace="fragments :: header"></div>
+    <nav th:replace="fragments :: header"></nav>
     <div style="margin:5%">
         <h1 style="margin-bottom: 4%">Added exercise :</h1>
         <br col-md-8>
@@ -12,7 +13,7 @@
         Weight :  <span th:text="*{exercise.weight != null}? *{exercise.weight} : 'Weightless exercise'"></span></br>
         Description :  <span th:text="${exercise.description}"></span>
     </div>
-    <a style="margin: 3%" class="col-md-3 btn btn-primary" th:href="@{/exercise/new}">Add new exercise</a>
+    <a style="margin: 3%" sec:authorize="hasRole('ADMIN')" class="col-md-3 btn btn-primary" th:href="@{/exercise/new}">Add new exercise</a>
     </div>
 </body>
 </html>

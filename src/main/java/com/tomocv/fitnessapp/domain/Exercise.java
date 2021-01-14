@@ -26,7 +26,7 @@ public class Exercise {
     @Size(min = 5, max = 120, message = "The description should be between 5 and 120 characters long")
     private String description;
 
-    public Exercise(Long id, String muscleGroup, String exerciseName, Integer numberOfReps, Float weight, String description) {
+    public Exercise(Long id, @NotEmpty(message = "You haven''t entered a muscle group") @Size(min = 2, max = 20, message = "The muscle group should be between 2 and 20 characters long") String muscleGroup, @NotEmpty(message = "You haven''t entered an exercise name") @Size(min = 2, max = 30, message = "The exercise name should be between 2 and 30 characters long") String exerciseName, @Min(value = 1, message = "The number of repetitions must be above 0") Integer numberOfReps, @Min(value = 0, message = "The weight cannot be a negative number") Float weight, @NotEmpty(message = "You haven''t entered a description") @Size(min = 5, max = 120, message = "The description should be between 5 and 120 characters long") String description) {
         this.id = id;
         this.muscleGroup = muscleGroup;
         this.exerciseName = exerciseName;

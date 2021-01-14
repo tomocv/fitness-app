@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments :: head"></head>
+<body>
+    <div class="container-fluid">
+        <nav th:replace="fragments :: header"></nav>
+        <div style="margin: 5%">
+            <h1 style="margin-bottom: 4%">Exercise list: </h1>
+            <a style="margin: 3%" sec:authorize="hasRole('ADMIN')" class="btn btn-primary" th:href="@{/exercise/new}">Enter
+                new exercise</a>
+            <table class="table">
+                <tr>
+                    <th scope="col">Muscle group</th>
+                    <th scope="col">Exercise name</th>
+                    <th scope="col">Number of repetitions</th>
+                    <th scope="col">Weight</th>
+                    <th scope="col">Description</th>
+                </tr>
+                <tr th:each="exercise : ${addedExercises}">
+                    <td><span th:text="${exercise.muscleGroup}"> Title </span></td>
+                    <td><span th:text="${exercise.exerciseName}"> Title </span></td>
+                    <td><span th:text="${exercise.numberOfReps}"> Title </span></td>
+                    <td><span th:text="${exercise.weight}"> Title </span></td>
+                    <td><span th:text="${exercise.description}"> Title </span></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

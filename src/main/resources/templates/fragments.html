@@ -1,20 +1,49 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <body>
     <head th:fragment="head">
         <meta charset="UTF-8">
         <title>Fitness application</title>
-        <link rel="shortcut icon" type="image/x-icon" th:href="@{/images/workout-logo.png}" />
+        <link rel="shortcut icon" type="image/x-icon" th:href="@{/images/workout-logo.png}"/>
         <link th:href="@{/css/style.css}" rel="stylesheet">
         <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
     </head>
 
-    <div th:fragment="header" id="logo-title" >
-        <img th:src="@{/images/workout-logo.png}" />
-        <h1>Fitness App</h1>
-    </div>
+    <nav th:fragment="header" class="navbar navbar-expand-md navbar-light bg-light" id="logo-title">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <img th:src="@{/images/workout-logo.png}"/>
+                <a class="navbar-brand" href="#">Fitness App</a>
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="nav navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/home}">Home</a><span class="sr-only">(current)</span></li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/exercise/list}">Exercises</a></li>
+                    <li class="nav-item" sec:authorize="isAnonymous()">
+                        <a class="nav-link login-link" th:href="@{/login}">Login</a></li>
+                    <div sec:authorize="isAuthenticated()">
+                        <form method="post" th:action="@{/logout}">
+                            <div class="login-link" style="padding: 1%">
+                                You are logged in as <span sec:authentication="name"></span>
+                                <input type="submit" value="Logout" class="btn btn-danger"/>
+                            </div>
+                        </form>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-    <div th:fragment="js" >
+    <div th:fragment="js">
         <script type="text/javascript" th:src="@{/js/bootstrap.bundle.min.js}"></script>
     </div>
 </body>
