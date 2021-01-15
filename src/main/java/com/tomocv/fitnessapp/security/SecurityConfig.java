@@ -3,6 +3,7 @@ package com.tomocv.fitnessapp.security;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -12,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import javax.sql.DataSource;
 
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final DataSource dataSource;
@@ -50,7 +52,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                     .logoutSuccessUrl("/login?logout")
                 .and()
-                .csrf().ignoringRequestMatchers(PathRequest.toH2Console())
+                .csrf()
+                    .ignoringRequestMatchers(PathRequest.toH2Console())
+                    .ignoringAntMatchers("/login", "/api/**")
                 .and()
                 .headers().frameOptions().sameOrigin();
     }

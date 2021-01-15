@@ -16,4 +16,5 @@ public interface JpaExerciseRepository extends CrudRepository<Exercise, Long> {
 
     Set<Exercise> findAllByMuscleGroupContainingIgnoreCaseAndExerciseNameContainingIgnoreCase(String muscleGroup, String exerciseName);
 
+    boolean existsByExerciseName(String exerciseName);
 }
