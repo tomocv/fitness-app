@@ -13,7 +13,6 @@
     </head>
 
     <nav th:fragment="header" class="navbar navbar-expand-md navbar-light bg-light" id="logo-title">
-        <div class="container-fluid">
             <div class="navbar-header">
                 <img th:src="@{/images/workout-logo.png}"/>
                 <a class="navbar-brand" href="#">Fitness App</a>
@@ -31,6 +30,9 @@
                     <li class="nav-item" sec:authorize="isAnonymous()">
                         <a class="nav-link login-link" th:href="@{/login}">Login</a></li>
                     <div sec:authorize="isAuthenticated()">
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/exercise/search}">Search existing exercises</a>
+                        </li>
                         <form method="post" th:action="@{/logout}">
                             <div class="login-link" style="padding: 1%">
                                 You are logged in as <span sec:authentication="name"></span>
@@ -40,7 +42,6 @@
                     </div>
                 </ul>
             </div>
-        </div>
     </nav>
 
     <div th:fragment="js">

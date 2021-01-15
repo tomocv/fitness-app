@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments :: head"></head>
+<body>
+    <div class="container-fluid">
+        <nav th:replace="fragments :: header"></nav>
+        <h2>Exercise search</h2>
+        <div>
+            <form method="post" th:object="${exercise}" th:action="@{/exercise/search}">
+                <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                        <label for="muscleGroup">Muscle group: </label>
+                        <input id="muscleGroup" type="text" th:field="*{muscleGroup}" class="form-control"/>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                        <label for="exerciseName">Exercise name: </label>
+                        <input id="exerciseName" type="text" th:field="*{exerciseName}" class="form-control"/>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                        <input type="submit" value="Search" class="btn btn-primary"/>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div th:if="${exerciseSet != null}">
+            <table class="table table-striped" th:if="${exerciseSet.size() != 0}">
+                <tr>
+                    <th>Muscle group</th>
+                    <th>Exercise name</th>
+                    <th>Number of reps</th>
+                    <th>Weight</th>
+                    <th>Description</th>
+                </tr>
+                <tr th:each="exercise : ${exerciseSet}">
+                    <td th:text="${exercise.muscleGroup}"></td>
+                    <td th:text="${exercise.exerciseName}"></td>
+                    <td th:text="${exercise.numberOfReps}"></td>
+                    <td th:text="${exercise.weight}"></td>
+                    <td th:text="${exercise.description}"></td>
+                </tr>
+            </table>
+            <div th:if="${exerciseSet.size() == 0}">
+                <span>No exercise by that search criteria found!</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -13,7 +13,7 @@ CREATE TABLE  if NOT EXISTS authorities (
 CREATE TABLE if NOT EXISTS exercise (
     id IDENTITY,
     muscle_group VARCHAR(20) NOT NULL,
-    exercise_name VARCHAR(30) NOT NULL,
+    exercise_name VARCHAR(40) NOT NULL,
     number_of_reps int,
     weight float,
     description VARCHAR(120) NOT NULL

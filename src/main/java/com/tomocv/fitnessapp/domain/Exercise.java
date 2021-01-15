@@ -1,11 +1,18 @@
 package com.tomocv.fitnessapp.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+@Entity
 public class Exercise {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotEmpty(message = "You haven''t entered a muscle group")
@@ -13,7 +20,7 @@ public class Exercise {
     private String muscleGroup;
 
     @NotEmpty(message = "You haven''t entered an exercise name")
-    @Size(min = 2, max = 30, message = "The exercise name should be between 2 and 30 characters long")
+    @Size(min = 2, max = 40, message = "The exercise name should be between 2 and 40 characters long")
     private String exerciseName;
 
     @Min(value=1, message = "The number of repetitions must be above 0")

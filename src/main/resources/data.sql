@@ -8,4 +8,8 @@ INSERT INTO authorities (username, authority) VALUES
     ('user', 'ROLE_USER');
 
 INSERT INTO exercise (id, muscle_group, exercise_name, number_of_reps, weight, description) VALUES
-    (1, 'Chest', 'Bench-press', '10', '80', 'https://www.youtube.com/embed/2fcZdoRyEiQ?autoplay=1&rel=0');
+    (1, 'Chest', 'Bench-press', '10', '80', 'https://www.youtube.com/embed/2fcZdoRyEiQ?autoplay=1&rel=0'),
+    (2, 'Shoulders', 'Dumbbell Lateral Rise', '10', '15', 'https://www.youtube.com/embed/MnPj-4CRdgU?autoplay=1&rel=0'),
+    (3, 'Biceps', 'Standing Alternate Biceps Dumbbell Curl', '24', '15', 'https://www.youtube.com/embed/Of_dSFTM9vA?autoplay=1&rel=0'),
+    (4, 'Triceps', 'Dips', Null, '0', 'https://www.youtube.com/embed/51f492JJHqg?autoplay=1&rel=0'),
+    (5, 'Forearms', 'Dumbbell Wrist Rotation', '15', '0', 'https://www.youtube.com/embed/IKXGwKvbIP4?autoplay=1&rel=0');

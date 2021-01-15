@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments :: head"></head>
 <body>
-    <div th:replace="fragments :: header"></div>
-    <img th:src="@{/images/dumbbell.jpg}" class="rounded mx-auto d-block">
+    <div class="container-fluid">
+        <div th:replace="fragments :: header"></div>
+        <img th:src="@{/images/dumbbell.jpg}" class="rounded mx-auto d-block">
+    </div>
 </body>
 </html>
