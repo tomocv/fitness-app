@@ -1,3 +1,8 @@
+DELETE FROM exercise;
+DELETE FROM authorities;
+DELETE FROM users;
+
+
 INSERT INTO users (username, password, enabled) VALUES
     ('admin', '$2y$12$uI2U6ltxcdF2hzJ6jhjAte67fvlOeF6qa9YF6K6COuvLWG7QJfQSK', 1),
     ('user', '$2y$12$4DJ5xP9a0V4s2mWY7D.YqespjOh1QMhTa.fzRbXv2msW9lAURU8zq', 1);

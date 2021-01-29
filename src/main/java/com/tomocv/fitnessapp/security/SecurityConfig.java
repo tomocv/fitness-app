@@ -40,7 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                     .requestMatchers(PathRequest.toStaticResources().atCommonLocations(), PathRequest.toH2Console()).permitAll()
-                .antMatchers("/home").permitAll()
+                .antMatchers("/", "/home").permitAll()
                 .antMatchers("/login").anonymous()
                 .antMatchers("/exercise/new", "exercise/added").hasRole("ADMIN")
                 .anyRequest().authenticated()

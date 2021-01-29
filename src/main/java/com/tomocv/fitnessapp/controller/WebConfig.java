@@ -10,5 +10,6 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/login");
+        registry.addViewController("/").setViewName("forward:/home");
     }
 }
