@@ -6,46 +6,54 @@
 <body>
     <head th:fragment="head">
         <meta charset="UTF-8">
-        <title>Fitness application</title>
+        <title th:text="#{msg.appName}"></title>
         <link rel="shortcut icon" type="image/x-icon" th:href="@{/images/workout-logo.png}"/>
         <link th:href="@{/css/style.css}" rel="stylesheet">
         <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
     </head>
-
-    <nav th:fragment="header" class="navbar navbar-expand-md navbar-light bg-light" id="logo-title">
-            <div class="navbar-header">
-                <img th:src="@{/images/workout-logo.png}"/>
-                <a class="navbar-brand" href="#">Fitness App</a>
-            </div>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-                    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="nav navbar-nav">
+    <div th:fragment="header" class="navbar navbar-expand-md navbar-light bg-light" id="logo-title">
+        <div class="navbar-header">
+            <span th:text="#{msg.lang.current}"></span>:
+            <select id="locales">
+                <option value="en" th:selected="${#locale.language == 'en'}" th:text="#{msg.lang.en}"></option>
+                <option value="hr" th:selected="${#locale.language == 'hr'}" th:text="#{msg.lang.hr}"></option>
+            </select>
+        </div>
+        <div class="navbar-header">
+            <img th:src="@{/images/workout-logo.png}"/>
+            <a class="navbar-brand" href="#" th:text="#{msg.appName}"></a>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="nav navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/home}" th:text="#{msg.home}"></a><span class="sr-only">(current)</span></li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/exercise/list}" th:text="#{msg.exercises}"></a></li>
+                <li class="nav-item" sec:authorize="isAnonymous()">
+                    <a class="nav-link login-link" th:href="@{/login}" th:text="#{msg.login}"></a></li>
+                <div sec:authorize="isAuthenticated()">
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/home}">Home</a><span class="sr-only">(current)</span></li>
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/exercise/list}">Exercises</a></li>
-                    <li class="nav-item" sec:authorize="isAnonymous()">
-                        <a class="nav-link login-link" th:href="@{/login}">Login</a></li>
-                    <div sec:authorize="isAuthenticated()">
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/exercise/search}">Search existing exercises</a>
-                        </li>
-                        <form method="post" th:action="@{/logout}">
-                            <div class="login-link" style="padding: 1%">
-                                You are logged in as <span sec:authentication="name"></span>
-                                <input type="submit" value="Logout" class="btn btn-danger"/>
-                            </div>
-                        </form>
-                    </div>
-                </ul>
-            </div>
-    </nav>
+                        <a class="nav-link" th:href="@{/exercise/search}" th:text="#{msg.search.existingExercises}"></a>
+                    </li>
+                    <form method="post" th:action="@{/logout}">
+                        <div class="login-link" style="padding: 1%">
+                            You are logged in as <span sec:authentication="name"></span>
+                            <input type="submit" value="Logout" class="btn btn-danger"/>
+                        </div>
+                    </form>
+                </div>
+            </ul>
+        </div>
+    </div>
 
     <div th:fragment="js">
         <script type="text/javascript" th:src="@{/js/bootstrap.bundle.min.js}"></script>
+        <script type="text/javascript" th:src="@{/js/jquery-3.5.1.slim.min.js}"></script>
+        <script type="text/javascript" th:src="@{/js/main.js}"></script>
     </div>
 </body>
 </html>

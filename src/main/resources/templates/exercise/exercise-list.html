@@ -6,15 +6,15 @@
     <div class="container-fluid">
         <nav th:replace="fragments :: header"></nav>
         <div style="margin: 5%">
-            <h1 style="margin-bottom: 4%">Exercise list: </h1>
+            <h1 style="margin-exercisebottom: 4%">Exercise list: </h1>
             <a style="margin: 3%" sec:authorize="hasRole('ADMIN')" class="btn btn-primary" th:href="@{/exercise/new}">Enter
                 new exercise</a>
             <table class="table">
                 <tr>
-                    <th scope="col">Muscle group</th>
-                    <th scope="col">Exercise name</th>
-                    <th scope="col">Number of repetitions</th>
-                    <th scope="col">Weight</th>
+                    <th scope="col" th:text="#{msg.exercise.muscleGroup}"></th>
+                    <th scope="col" th:text="#{msg.exercise.exerciseName}"></th>
+                    <th scope="col" th:text="#{msg.exercise.numberOfReps}"></th>
+                    <th scope="col" th:text="#{msg.exercise.weight}"></th>
                     <th scope="col">Description</th>
                 </tr>
                 <tr th:each="exercise : ${addedExercises}">
@@ -27,5 +27,6 @@
             </table>
         </div>
     </div>
+    <div th:replace="fragments :: js"></div>
 </body>
 </html>

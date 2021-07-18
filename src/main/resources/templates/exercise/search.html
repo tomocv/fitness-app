@@ -9,20 +9,20 @@
             <form method="post" th:object="${exercise}" th:action="@{/exercise/search}">
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
-                        <label for="muscleGroup">Muscle group: </label>
+                        <label for="muscleGroup" th:text="#{msg.exercise.muscleGroup} + ':'"> </label>
                         <input id="muscleGroup" type="text" th:field="*{muscleGroup}" class="form-control"/>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
-                        <label for="exerciseName">Exercise name: </label>
+                        <label for="exerciseName" th:text="#{msg.exercise.exerciseName} + ':'"> </label>
                         <input id="exerciseName" type="text" th:field="*{exerciseName}" class="form-control"/>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
-                        <input type="submit" value="Search" class="btn btn-primary"/>
+                        <input type="submit" th:value="#{msg.search}" class="btn btn-primary"/>
                     </div>
                 </div>
             </form>
@@ -46,9 +46,10 @@
                 </tr>
             </table>
             <div th:if="${exerciseSet.size() == 0}">
-                <span>No exercise by that search criteria found!</span>
+                <span th:text="#{msg.noExerciseFound}"> </span>
             </div>
         </div>
     </div>
+    <div th:replace="fragments :: js"></div>
 </body>
 </html>

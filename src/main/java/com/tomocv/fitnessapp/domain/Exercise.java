@@ -15,22 +15,22 @@ public class Exercise {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty(message = "You haven''t entered a muscle group")
-    @Size(min = 2, max = 20, message = "The muscle group should be between 2 and 20 characters long")
+    @NotEmpty(message = "{validation.exercise.muscleGroup.notEmpty}")
+    @Size(min = 2, max = 20, message = "{validation.exercise.muscleGroup.size}")
     private String muscleGroup;
 
-    @NotEmpty(message = "You haven''t entered an exercise name")
-    @Size(min = 2, max = 40, message = "The exercise name should be between 2 and 40 characters long")
+    @NotEmpty(message = "{validation.exercise.exerciseName.notEmpty}")
+    @Size(min = 2, max = 40, message = "{validation.exercise.exerciseName.size}")
     private String exerciseName;
 
-    @Min(value=1, message = "The number of repetitions must be above 0")
+    @Min(value=1, message = "{validation.exercise.numberOfReps.min}")
     private Integer numberOfReps;
 
-    @Min(value=0, message = "The weight cannot be a negative number")
+    @Min(value=0, message = "{validation.exercise.weight.min}")
     private Float weight;
 
-    @NotEmpty(message = "You haven''t entered a description")
-    @Size(min = 5, max = 120, message = "The description should be between 5 and 120 characters long")
+    @NotEmpty(message = "{validation.exercise.description.notEmpty}")
+    @Size(min = 5, max = 120, message = "{validation.exercise.description.size}")
     private String description;
 
     public Exercise(Long id, @NotEmpty(message = "You haven''t entered a muscle group") @Size(min = 2, max = 20, message = "The muscle group should be between 2 and 20 characters long") String muscleGroup, @NotEmpty(message = "You haven''t entered an exercise name") @Size(min = 2, max = 30, message = "The exercise name should be between 2 and 30 characters long") String exerciseName, @Min(value = 1, message = "The number of repetitions must be above 0") Integer numberOfReps, @Min(value = 0, message = "The weight cannot be a negative number") Float weight, @NotEmpty(message = "You haven''t entered a description") @Size(min = 5, max = 120, message = "The description should be between 5 and 120 characters long") String description) {

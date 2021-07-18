@@ -37,7 +37,7 @@ public class ExerciseController {
         return "exercise/exercise-form";
     }
 
-    @PostMapping("added")
+    @PostMapping("new")
     public String exerciseAdded(@Valid Exercise exercise, Errors errors){
         if(errors.hasErrors()){
             return "exercise/exercise-form";

@@ -54,7 +54,7 @@ public class ExerciseControllerTest {
     void invalidExerciseSubmit() throws Exception {
         this.mockMvc
                 .perform(
-                        post("/exercise/added")
+                        post("/exercise/new")
                                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                                 .with(csrf())
                                 .with(user("test").password("testpassword").roles("ADMIN", "USER"))
@@ -68,7 +68,7 @@ public class ExerciseControllerTest {
     void validExerciseSubmit() throws Exception {
         this.mockMvc
                 .perform(
-                        post("/exercise/added")
+                        post("/exercise/new")
                                 .param("muscleGroup", "Test Muscle Group")
                                 .param("exerciseName", "Test Exercise Name")
                                 .param("numberOfReps", "10")
