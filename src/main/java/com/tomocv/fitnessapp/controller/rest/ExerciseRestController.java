@@ -4,6 +4,7 @@ import com.tomocv.fitnessapp.domain.Exercise;
 import com.tomocv.fitnessapp.repository.JpaExerciseRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -35,7 +36,7 @@ public class ExerciseRestController {
                         () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Exercise was not found")
                 );
     }
-    @Secured("ROLE_ADMIN")
+//    @Secured("ROLE_ADMIN")
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public Exercise save(@Valid @RequestBody Exercise exercise) {
@@ -50,7 +51,7 @@ public class ExerciseRestController {
         return jpaExerciseRepository.save(exercise);
     }
 
-    @Secured("ROLE_ADMIN")
+//    @Secured("ROLE_ADMIN")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("{id}")
     public void delete(@PathVariable Long id) {
@@ -61,7 +62,7 @@ public class ExerciseRestController {
         jpaExerciseRepository.deleteById(id);
     }
 
-    @Secured("ROLE_ADMIN")
+//    @Secured("ROLE_ADMIN")
     @PutMapping("{id}/update-weight")
     public Exercise updateWeight(@PathVariable Long id, @RequestParam @Min(value=0, message = "The weight cannot be a negative number") Float weight) {
         final Exercise exercise = jpaExerciseRepository.findById(id)
@@ -72,5 +73,16 @@ public class ExerciseRestController {
         exercise.setWeight(weight);
 
         return jpaExerciseRepository.save(exercise);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Exercise> update(@PathVariable Long id, @RequestBody Exercise exercise) {
+        if (jpaExerciseRepository.findById(id).isPresent()) {
+            exercise.setId(id);
+            exercise = jpaExerciseRepository.save(exercise);
+            return  new ResponseEntity<>(exercise, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
     }
 }
